@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>叶展铭 · 个人网站</title>
+  <meta name="description" content="叶展铭的个人网站——物联网工程学生，嵌入式与 AI 编程爱好者。">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- 扫描线遮罩（全屏固定） -->
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- 霓虹粒子星空背景 -->
+  <canvas id="bg" aria-hidden="true"></canvas>
+
+  <!-- 吸顶导航 -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a class="logo" href="#hero"><span class="logo-mark">&gt;_</span> 叶展铭</a>
+      <nav class="nav-links" id="nav-links">
+        <a href="#about">关于</a>
+        <a href="#skills">技能</a>
+        <a href="#projects">项目</a>
+        <a href="#blog">博客</a>
+        <a href="#contact" class="nav-cta">联系我</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="打开菜单">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="hero-inner">
+        <div class="avatar" aria-hidden="true">叶</div>
+        <h1 class="glitch" data-text="叶展铭">叶展铭</h1>
+        <p class="role">物联网工程学生 · 嵌入式 &amp; AI 编程</p>
+        <p class="typing-wrap"><span id="typing"></span><span class="cursor">▍</span></p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn btn-primary">看我的项目</a>
+          <a href="#contact" class="btn btn-ghost">联系我</a>
+        </div>
+      </div>
+      <a href="#about" class="scroll-hint" aria-label="向下滚动">▼</a>
+    </section>
+
+    <!-- 关于 -->
+    <section class="section" id="about">
+      <h2 class="section-title"><span class="accent">//</span> 关于我</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>我是 <strong>叶展铭</strong>，大连民族大学物联网工程专业学生。喜欢从单片机裸机到数学建模、再到用 AI 工具写代码，享受把「一个想法 → 一个能跑起来的东西」的完整过程。</p>
+          <p>当前在嵌入式、视觉识别与 AI 编程三个方向折腾，相信「先跑通，再迭代」。</p>
+        </div>
+        <ul class="timeline">
+          <li><span class="time">2024.09</span> 入学大连民族大学 · 物联网工程</li>
+          <li><span class="time">2025</span> 电子设计竞赛：杆球平衡系统（辽宁赛区 H 题）</li>
+          <li><span class="time">2026.09</span> 数学建模国赛 C 题：微网调度优化</li>
+          <li><span class="time">2026.10</span> 学习 AI 编程，用 AI 开发 Chrome 插件 / 个人网站</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 技能 -->
+    <section class="section section-alt" id="skills">
+      <h2 class="section-title"><span class="accent">//</span> 技能</h2>
+      <div class="skill-grid">
+        <!-- 嵌入式 -->
+        <div class="skill-cat">
+          <h3>🛠️ 嵌入式 / 硬件</h3>
+          <div class="skill"><span class="skill-name">STM32 (C)</span><div class="bar"><i style="--w:80%"></i></div></div>
+          <div class="skill"><span class="skill-name">K210 / 视觉</span><div class="bar"><i style="--w:70%"></i></div></div>
+          <div class="skill"><span class="skill-name">Arduino</span><div class="bar"><i style="--w:75%"></i></div></div>
+          <div class="skill"><span class="skill-name">C / C++</span><div class="bar"><i style="--w:75%"></i></div></div>
+        </div>
+        <!-- 编程 -->
+        <div class="skill-cat">
+          <h3>💻 编程语言</h3>
+          <div class="skill"><span class="skill-name">Python</span><div class="bar"><i style="--w:85%"></i></div></div>
+          <div class="skill"><span class="skill-name">JavaScript</span><div class="bar"><i style="--w:70%"></i></div></div>
+          <div class="skill"><span class="skill-name">Git</span><div class="bar"><i style="--w:80%"></i></div></div>
+          <div class="skill"><span class="skill-name">MATLAB</span><div class="bar"><i style="--w:65%"></i></div></div>
+        </div>
+        <!-- AI / 数据 -->
+        <div class="skill-cat">
+          <h3>🤖 AI / 数据</h3>
+          <div class="skill"><span class="skill-name">数学建模</span><div class="bar"><i style="--w:85%"></i></div></div>
+          <div class="skill"><span class="skill-name">AI 编程（Cursor/Claude/Codex）</span><div class="bar"><i style="--w:90%"></i></div></div>
+          <div class="skill"><span class="skill-name">大模型应用</span><div class="bar"><i style="--w:75%"></i></div></div>
+          <div class="skill"><span class="skill-name">数据分析</span><div class="bar"><i style="--w:70%"></i></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 项目 -->
+    <section class="section" id="projects">
+      <h2 class="section-title"><span class="accent">//</span> 项目</h2>
+      <div class="project-grid">
+        <article class="project-card">
+          <div class="project-cover c1">⚙️</div>
+          <div class="project-body">
+            <h3>杆球平衡系统</h3>
+            <p>基于 STM32F407 + K210 的视觉伺服杆球平衡装置，辽宁赛区电子设计竞赛 H 题。</p>
+            <div class="tags"><span>STM32</span><span>K210</span><span>视觉</span><span>C</span></div>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-cover c2">📊</div>
+          <div class="project-body">
+            <h3>微网调度优化</h3>
+            <p>2026 数学建模国赛 C 题，构建逐日滚动 + 日内滚动多目标优化调度模型。</p>
+            <div class="tags"><span>Python</span><span>优化</span><span>建模</span></div>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-cover c3">🧩</div>
+          <div class="project-body">
+            <h3>电商图片下载插件</h3>
+            <p>Chrome 扩展，一键提取淘宝 / 京东 / 拼多多商品图，批量转 PNG 下载。</p>
+            <div class="tags"><span>JavaScript</span><span>Chrome扩展</span><span>MV3</span></div>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-cover c4">🌌</div>
+          <div class="project-body">
+            <h3>个人网站</h3>
+            <p>你正在看的这个赛博朋克霓虹风个人站，纯静态 + Canvas 粒子星空。</p>
+            <div class="tags"><span>HTML/CSS</span><span>Canvas</span><span>JS</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 博客 -->
+    <section class="section section-alt" id="blog">
+      <h2 class="section-title"><span class="accent">//</span> 博客</h2>
+      <div class="blog-list">
+        <article class="blog-item">
+          <time>2026-10</time>
+          <div class="blog-body">
+            <h3>用 AI 编程开发 Chrome 插件的心得</h3>
+            <p>从需求分析到推送部署，记录一次完整的 AI 编程实战流程。</p>
+            <div class="tags"><span>AI编程</span><span>效率</span></div>
+          </div>
+        </article>
+        <article class="blog-item">
+          <time>2026-09</time>
+          <div class="blog-body">
+            <h3>数学建模入门：从国赛 C 题说起</h3>
+            <p>如何把一个调度优化问题拆解成可求解的模型。</p>
+            <div class="tags"><span>建模</span><span>优化</span></div>
+          </div>
+        </article>
+        <article class="blog-item">
+          <time>2026-06</time>
+          <div class="blog-body">
+            <h3>从零做一个杆球平衡系统</h3>
+            <p>STM32 与 K210 视觉闭环控制的踩坑与实现记录。</p>
+            <div class="tags"><span>嵌入式</span><span>控制</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 联系 -->
+    <section class="section" id="contact">
+      <h2 class="section-title"><span class="accent">//</span> 联系我</h2>
+      <p class="contact-intro">有想法想交流？欢迎随时找我。</p>
+      <div class="contact-links">
+        <button class="btn btn-primary" id="copy-email">📧 复制邮箱</button>
+        <a class="btn btn-ghost" href="https://github.com/Yedeng-yzm" target="_blank" rel="noopener">GitHub</a>
+        <span class="email" id="email" hidden>yezhanming@example.com</span>
+      </div>
+      <p class="contact-tip" id="copy-tip"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 叶展铭 · 用代码连接硬件与世界</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
