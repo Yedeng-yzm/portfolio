@@ -12,6 +12,6 @@
 
 ## 修改内容
 
-- 个人信息 / 技能 / 项目 / 博客：编辑 `index.html`
+- 个人信息 / 技能 / 项目 / 博客：编辑 `data.js`（或用管理后台在线改，见 `portfolio-admin` 仓库）
 - 主题色 / 风格：编辑 `css/style.css` 顶部 `:root` 变量
 - 粒子数量 / 动画：编辑 `js/main.js` 顶部配置

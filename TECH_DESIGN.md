@@ -16,9 +16,10 @@
 
 ```
 portfolio/
-├── index.html        # 单页站点（全部区块）
+├── index.html        # 单页站点（结构 + 占位容器）
+├── data.js           # 内容数据（window.SITE_DATA，管理后台读写此文件）
 ├── css/style.css     # 全站样式（:root 变量定义主题色）
-├── js/main.js        # 粒子背景 + 交互 + 滚动动画
+├── js/main.js        # 读取 data.js 渲染 + 粒子背景 + 交互 + 滚动动画
 ├── PRD.md            # 需求文档
 ├── TECH_DESIGN.md    # 技术文档（本文件）
 └── AGENTS.md         # AI 代理指令
@@ -26,12 +27,14 @@ portfolio/
 
 ## 三、数据模型
 
-内容为纯静态，直接写在 `index.html` 中，无需数据库：
+内容与结构分离：全部可编辑内容集中在 `data.js`（`window.SITE_DATA`），页面加载后由 `js/main.js` 读取渲染，无需数据库：
 
-- **个人信息**：姓名、职位、一句话简介、教育经历
-- **技能**：分类（名称、熟练度百分比）
-- **项目**：名称、描述、技术标签、链接
-- **博客**：标题、摘要、日期、标签
+- **profile**：姓名、英文名、职位、站点标题、头像、打字机句子、关于我段落、时间线、邮箱、GitHub
+- **skills**：分类（图标、分类名）+ 技能项（名称、熟练度百分比）
+- **projects**：名称、描述、技术标签、封面色、封面图标
+- **blog**：标题、摘要、日期、标签
+
+配套管理后台（`portfolio-admin` 仓库）通过 GitHub Contents API 读写 `data.js`，实现在线修改。
 
 ## 四、关键技术点
 

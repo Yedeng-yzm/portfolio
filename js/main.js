@@ -1,11 +1,91 @@
-// 个人网站交互脚本：霓虹粒子星空、打字机、导航、滚动动效、邮箱复制
+// 个人网站交互脚本：内容渲染（读 data.js）、霓虹粒子星空、打字机、导航、滚动动效、邮箱复制
 document.addEventListener('DOMContentLoaded', () => {
+  renderContent();
   initParticles();
   initTyping();
   initNav();
   initReveal();
   initCopyEmail();
 });
+
+/* ---------- HTML 转义（内容来自 data.js，统一安全输出） ---------- */
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  }[c]));
+}
+
+/* ---------- 渲染页面内容（从 window.SITE_DATA 读取） ---------- */
+function renderContent() {
+  const data = window.SITE_DATA || {};
+  const p = data.profile || {};
+
+  // 文档标题 / 姓名
+  document.title = p.siteTitle || document.title;
+  document.getElementById('logo-name').textContent = p.name || '';
+  document.getElementById('avatar').textContent = p.avatar || p.name?.slice(0, 1) || '';
+  const nameEl = document.getElementById('name');
+  nameEl.textContent = p.name || '';
+  nameEl.setAttribute('data-text', p.name || '');
+  document.getElementById('en-name').textContent = p.enName || '';
+  document.getElementById('role').textContent = p.role || '';
+
+  // 关于我：段落 + 姓名自动加粗
+  const aboutEl = document.getElementById('about-text');
+  const about = Array.isArray(p.about) ? p.about : [];
+  const escName = esc(p.name || '');
+  aboutEl.innerHTML = about.map((para) => {
+    let html = esc(para);
+    if (escName) html = html.split(escName).join(`<strong>${escName}</strong>`);
+    return `<p>${html}</p>`;
+  }).join('');
+
+  // 时间线
+  document.getElementById('timeline').innerHTML = (Array.isArray(p.timeline) ? p.timeline : [])
+    .map((it) => `<li><span class="time">${esc(it.time)}</span>${esc(it.text)}</li>`).join('');
+
+  // 技能
+  document.getElementById('skill-grid').innerHTML = (data.skills || []).map((cat) => `
+    <div class="skill-cat">
+      <h3>${esc(cat.icon)} ${esc(cat.title)}</h3>
+      ${(cat.items || []).map((s) => `
+        <div class="skill">
+          <span class="skill-name">${esc(s.name)}</span>
+          <div class="bar"><i style="--w:${Number(s.level) || 0}%"></i></div>
+        </div>`).join('')}
+    </div>`).join('');
+
+  // 项目
+  document.getElementById('project-grid').innerHTML = (data.projects || []).map((pr) => `
+    <article class="project-card">
+      <div class="project-cover ${esc(pr.cover || 'c1')}">${esc(pr.icon || '')}</div>
+      <div class="project-body">
+        <h3>${esc(pr.title)}</h3>
+        <p>${esc(pr.desc)}</p>
+        <div class="tags">${(pr.tags || []).map((t) => `<span>${esc(t)}</span>`).join('')}</div>
+      </div>
+    </article>`).join('');
+
+  // 博客
+  document.getElementById('blog-list').innerHTML = (data.blog || []).map((b) => `
+    <article class="blog-item">
+      <time>${esc(b.time)}</time>
+      <div class="blog-body">
+        <h3>${esc(b.title)}</h3>
+        <p>${esc(b.desc)}</p>
+        <div class="tags">${(b.tags || []).map((t) => `<span>${esc(t)}</span>`).join('')}</div>
+      </div>
+    </article>`).join('');
+
+  // 联系：邮箱 / GitHub
+  document.getElementById('email').textContent = p.email || '';
+  const gh = document.getElementById('github-link');
+  if (p.github) gh.setAttribute('href', p.github);
+
+  // 页脚
+  document.getElementById('footer-text').textContent =
+    `© ${new Date().getFullYear()} ${p.name || ''} · 用代码连接硬件与世界`;
+}
 
 /* ---------- 霓虹粒子星空（Canvas + 鼠标视差） ---------- */
 function initParticles() {
@@ -73,11 +153,8 @@ function initParticles() {
 /* ---------- 打字机效果 ---------- */
 function initTyping() {
   const el = document.getElementById('typing');
-  const lines = [
-    '用代码连接硬件与世界。',
-    '把想法做成能跑的东西。',
-    '在嵌入式与 AI 之间折腾。',
-  ];
+  const lines = (window.SITE_DATA?.profile?.typing) || [];
+  if (!lines.length) return;
   let li = 0, ci = 0, deleting = false;
   function tick() {
     const line = lines[li];
