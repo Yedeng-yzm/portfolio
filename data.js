@@ -4,7 +4,7 @@
 // ============================================================
 window.SITE_DATA = {
   "profile": {
-    "name": "叶展铭",
+    "name": "yyy",
     "enName": "ZhanMing YE",
     "role": "物联网工程学生 · 嵌入式 & AI 编程",
     "siteTitle": "叶展铭 · 个人网站",
