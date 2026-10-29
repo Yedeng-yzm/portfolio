@@ -59,6 +59,10 @@ window.SITE_DATA = {
         {
           "name": "C / C++",
           "level": 75
+        },
+        {
+          "name": "hhh",
+          "level": 50
         }
       ]
     },
